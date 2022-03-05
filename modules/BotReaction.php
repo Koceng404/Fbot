@@ -10,10 +10,10 @@ class Reaction
 
 	protected $filelog = "./storage/reaction-%s.json";		
 
-	protected $sleep_noactivity = 600; // 10 minutes	
+	protected $sleep_noactivity = 300; // 10 minutes	
 	protected $sleep_bot = 120; // 2 minutes	
-	protected $delay_bot = 30; // delay per-process
-	protected $delay_bot_default = 30; // delay default
+	protected $delay_bot = 12; // delay per-process
+	protected $delay_bot_default = 11; // delay default
 	protected $delay_bot_count = 0; // dont change
 
 	protected function FetchFeed($classBot)
@@ -287,14 +287,14 @@ class Reaction
 	{
 
 		/* reset sleep value to default */
-		if ($this->delay_bot_count >= 5) {
+		if ($this->delay_bot_count >= 1) {
 			$this->delay_bot = $this->delay_bot_default;
 			$this->delay_bot_count = 0;
 		}	
 
 		echo "[*] Delay {$this->delay_bot}".PHP_EOL;
 		sleep($this->delay_bot);
-		$this->delay_bot = $this->delay_bot+5;
+		$this->delay_bot = $this->delay_bot+1;
 		$this->delay_bot_count++;
 	}
 
